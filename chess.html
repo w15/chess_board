@@ -5,12 +5,32 @@
   <link rel="stylesheet" href="my_styles.css">
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Your code goes here.
+      // Read: http://jqueryui.com/draggable/
+
+      // 1. Make the squares draggable.
+      // 2. Constrain the squares to the board.
+      // 3. Leave the original square in place; drag around a clone.
+
+      $('.square').draggable({ containment: "#board",
+                               scroll: false,
+                               helper: 'clone'
+      });
+
+      $('.square').droppable({ drop: function(event, ui) {
+                                       $(this).html(ui.draggable.html());
+                                       ui.draggable.html('');
+                                     }
+      });
+    });
+  </script>
+
 </head>
 
 <body>
-
-  <input name="the_date" id="date_input">
-
   <div id="board">
     <div class="rank">
       <div class="square">
